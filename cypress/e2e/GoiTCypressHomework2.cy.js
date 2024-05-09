@@ -17,7 +17,7 @@ describe("Homework 2 testing GoIT webaplication", ()=>{
   });
   it("visit testing Webapp with second testdata - Test 2", ()=>{
     cy.visit(testSite)// ener site
-    cy.logIn(testEmail2, testPass2);// use external funkcion to log inn writed in commands.js
+    cy.logIn(testEmail2, testPass2);// use external funkcion to "log in" writed in commands.js
     cy.get('#open-navigation-menu-mobile').scrollIntoView().click();// scrolpage to see rightcorner button and click it
     cy.get(':nth-child(8) > .next-bve2vl').scrollIntoView().click();// scrolpage to see Logout and click it
   });
