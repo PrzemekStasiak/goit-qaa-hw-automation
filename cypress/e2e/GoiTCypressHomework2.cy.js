@@ -9,13 +9,13 @@ describe("Homework 2 testing GoIT webaplication", ()=>{
     cy.get("#user_password").type("1234567890");// find usser_password and type "1234567890")
     cy.get(".eckniwg2").click();// click login button
     cy.get('#open-navigation-menu-mobile').scrollIntoView().click();// scrolpage to see rightcorner button and click it
-    cy.get(':nth-child(12) > .next-bve2vl').scrollIntoView().click();// scrolpage to see Loggo oput button and click it
+    cy.get(':nth-child(12) > .next-bve2vl').scrollIntoView().click();// scrolpage to see Logout button and click it
   });
   it("visit testing Webapp with fisrt data - Test 2", ()=>{
     cy.visit("https://www.edu.goit.global/account/login")// ener site
     cy.logIn("testowyqa@qa.team", "QA!automation-1");// use external funkcjon to log inn writed in commands.js
     cy.get('#open-navigation-menu-mobile').scrollIntoView().click();// scrolpage to see rightcorner button and click it
-    cy.get(':nth-child(8) > .next-bve2vl').scrollIntoView().click();// scrolpage to see Loggout and click it
+    cy.get(':nth-child(8) > .next-bve2vl').scrollIntoView().click();// scrolpage to see Logout and click it
   });
 })
 
