@@ -1,8 +1,8 @@
 import { Login } from "../pages/Login"; // import Login.js 
 import { HomePage } from "../pages/HomePage";//import HomePage.js
 
-const loginPage = new Login(); //constructor of ne class Login
-const homePage = new HomePage();///constructor of ne class HomePage
+const loginPage = new Login(); //constructor of new class Login
+const homePage = new HomePage();///constructor of new class HomePage
 
 const testSite = "https://www.edu.goit.global/account/login"; // constnt of page to be tested
 
