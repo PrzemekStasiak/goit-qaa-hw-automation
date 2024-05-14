@@ -13,17 +13,17 @@ const testEmail2 = "testowyqa@qa.team";//test data 2
 const testPass2 = "QA!automation-1";//test data 2
 
 describe('Testing the login page', () =>{
-    it ('test 1: shold login and logout with test data 1',() =>{
-        loginPage.visit(testSite);// using external class to visit tets page
-        loginPage.login (testEmail1, testPass1);//using external class login with test data 1
-        homePage.logout();//using external data to logout to homepage
+    beforeEach(()=>{
+        loginPage.visit(testSite);// before every test enetr site using external class to visit tets page
     })
-}) 
+    afterEach(()=>{
+        homePage.logout();//after every test logout using external data to logout to homepage
+    })
+    it ('test 1: shold login and logout with test data 1',() =>{
+        loginPage.login (testEmail1, testPass1);//using external class login with test data 1 
+    })
 
-describe('Testing the login page', () =>{
     it ('test 2: shold login and logout with test data 2',() =>{
-        loginPage.visit(testSite); // using external class to visit tets page
         loginPage.login (testEmail2, testPass2);//using external class login with test data 2
-        homePage.logout();//using external data to logout to homepage
     })
 }) 
