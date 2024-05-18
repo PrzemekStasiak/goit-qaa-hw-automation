@@ -29,3 +29,7 @@ Cypress.Commands.add('logIn', (email, password)=>{
     cy.get("#user_password").type(password);
     cy.get('[type="submit"]').click();
 });
+
+Cypress.Commands.add('getRandomInt', (max) =>{
+    return Math.floor(Math.random() * max);
+  });

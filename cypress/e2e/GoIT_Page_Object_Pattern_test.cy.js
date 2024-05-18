@@ -16,14 +16,16 @@ describe("Testing the login page", () => {
   beforeEach(() => {
     loginPage.visit(testSite); // before every test enter site using external class to visit test page
   });
+  
   afterEach(() => {
     homePage.logout(); //after every test logout using external data/class to logout to homepage
   });
-  it("test 1: shold login and logout with test data 1", () => {
+
+  it("test 1: should login and logout with test data 1", () => {
     loginPage.login(testEmail1, testPass1); //using external class login with test data 1
   });
 
-  it("test 2: shold login and logout with test data 2", () => {
+  it("test 2: should login and logout with test data 2", () => {
     loginPage.login(testEmail2, testPass2); //using external class login with test data 2
   });
 }); 
