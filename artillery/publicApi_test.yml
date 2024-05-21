@@ -1,0 +1,98 @@
+config:
+  target: "https://ctext.org/tools/api" #public API to test
+  environments: #setup different tests that can be lanched
+    randomTests: # name of test to run "npx artillery run publicApi_test.yml -e spike"
+      phases:
+        - duration: 60 #time of test 60s and rising vusers to have 30 users in 60's second of test starting from user
+          arrivalRate: 1 
+          rampTo: 30
+          name: RampTO
+        - duration: 40 # in this scenario in 40s we have 20 vusers
+          arrivalCount: 20
+          name: arrivalCount
+        - pause: 5 #pause for 5s
+          name: pause 5s
+        - duration: 60 # in this test for 60s adding new user to number of 10 if user log out then add another
+          arrivalRate: 1
+          maxVusers: 10
+          name: maxVusers
+
+    spike: #spike test not run if not use command -e spike
+      phases:
+        - duration: 300 #for 300s rise vuser 2 every second
+          arrivalRate: 2
+          name: Spike-pre Warm-Up
+        - duration: 10 #for 10s rise vuser 20 every second
+          arrivalRate: 20
+          name: Spike test
+        - duration: 300 #for 300s rise vuser 2 every second
+          arrivalRate: 2
+          name: Spike-post Cool-down
+
+    endurance: #endurance test
+      phases:
+        - duration: 18000 #for 5 hours add 1 vuser per s
+          arrivalRate: 1
+          name: Soak test   
+
+    stressTest: #stress test
+      phases:
+        - duration: 600 #for 10min make every second to 10 vusers run scenario
+          arrivalRate: 6
+          name: Stress Test
+
+    Scalability:
+      phases:
+        - duration: 300 #for 5 min ad 1 vuser per s
+          arrivalRate: 1
+          name: Scalability 1
+        - duration: 300 #for 5 min ad 2 vuser per s
+          arrivalRate: 2
+          name: Scalability 2
+        - duration: 300 #for 5 min ad 3 vuser per s
+          arrivalRate: 3
+          name: Scalability 3
+        - duration: 300 #for 5 min ad 4 vuser per s
+          arrivalRate: 4
+          name: Scalability 4
+        - duration: 300 #for 5 min ad 5 vuser per s
+          arrivalRate: 5
+          name: Scalability 5
+
+  plugins:
+    fake-data: {}
+    ensure: {}
+  fake-data:  #fake data to randomize data we sending
+      randEmail: # randomizing email to length 11
+        size: 11    
+  ensure: #tests
+    thresholds:
+      - http.response_time.p95: 250 # http.response_time.p95 should be less than 250
+      - http.response_time.p99: 100 # http.response_time.p99 should be less than 100 
+      - http.response_time.median: 200 # http.response_time.median should be less than 200
+    conditions:
+      - expression: vusers.failed == 0 # don't won't to have virtual users failed scenarios
+      - expression: 'http.codes.301 < 250 and http.request_rate > 1000' # 301 codes to be les than 250 and requestrate to be bigger than 5
+
+  payload:
+    -
+      path: "keywords.csv"
+      fields:
+        - "fruit"
+        - "car"
+      order: sequence
+      skipHeader: true # csv file have a header need to be skipped
+      cast: false #csv file don't have numbers
+      skipEmptyLines: true #skipping empty lines in csv file
+#scenarios is what our virtual user should do 
+scenarios:
+  - name: Getting a resource and posting data
+    flow:
+      - get:
+          url: "{{ target }}get?param1={{ **fruit** }}" #POST method with parameter 1 from csv file
+      - post:
+          url: "{{ target }}post?param2={{ **car** }}" #GET method with param2 from csv file
+          json: #sended json data
+            username: "Test User" 
+            email: '{{ $randEmail() }}' # using random email with length 11
+            password: "Temp Password"
