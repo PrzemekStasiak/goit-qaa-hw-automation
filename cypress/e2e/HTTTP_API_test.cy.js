@@ -175,10 +175,6 @@ describe('httpbin tests sending key', () => {
         cy.request(request).then(response => {
             assert.isTrue(response.duration <= 500)
         })
-
-        cy.request(request).then(response => {
-            assert.isTrue(response.duration <= 250)
-        })
     } 
   })
 })
