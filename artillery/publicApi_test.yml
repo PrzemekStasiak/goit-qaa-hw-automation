@@ -72,7 +72,7 @@ config:
       - http.response_time.median: 200 # http.response_time.median should be less than 200
     conditions:
       - expression: vusers.failed == 0 # don't won't to have virtual users failed scenarios
-      - expression: 'http.codes.301 < 250 and http.request_rate > 1000' # 301 codes to be les than 250 and requestrate to be bigger than 5
+      - expression: 'http.codes.301 < 250 and http.request_rate > 1000' # 301 codes to be les than 250 and requestrate to be bigger than 1000
 
   payload:
     -
