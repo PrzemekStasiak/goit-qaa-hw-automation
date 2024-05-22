@@ -1,1 +1,1 @@
-# goit-qaa-hw-cy-02
+# Go it automation projects in Cypress and Artillery
