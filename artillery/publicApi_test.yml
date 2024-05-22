@@ -1,6 +1,6 @@
 config:
   target: "https://ctext.org/tools/api" #public API to test
-  environments: #setup different tests that can be lanched
+  environments: #setup different tests that can be launched
     randomTests: # name of test to run "npx artillery run publicApi_test.yml -e spike"
       phases:
         - duration: 60 #time of test 60s and rising vusers to have 30 users in 60's second of test starting from user
