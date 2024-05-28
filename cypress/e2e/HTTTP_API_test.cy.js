@@ -48,7 +48,7 @@ describe ('httpbin tests GET method on POST url ', () =>{
         })
     })
 })
-// test POST sending bodyData response should be 200 and bodydata not equal to sended data
+// test POST sending bodyData response should be 200 and body data not equal to sended data
 describe ('httpbin tests sending and recieving body', () =>{
     const bodyData = {
         bodyKey: "bodyValue"
