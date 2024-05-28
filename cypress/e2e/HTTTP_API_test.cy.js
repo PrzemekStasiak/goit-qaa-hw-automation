@@ -160,7 +160,7 @@ describe('httpbin tests sending key', () => {
    
   })
 
-  describe('httpbin tests is random id response duration is less than 500ms and 250 ms', () => {
+  describe('httpbin tests is random id response duration is less than 500ms', () => {
 
     it('test random ids response time', () => {
       for(let i = 0; i < 10; i++) {
