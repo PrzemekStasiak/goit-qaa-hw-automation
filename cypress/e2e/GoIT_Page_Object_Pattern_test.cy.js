@@ -4,7 +4,7 @@ import { HomePage } from "../pages/HomePage";//import HomePage.js
 const loginPage = new Login(); //constructor of new class Login
 const homePage = new HomePage();///constructor of new class HomePage
 
-const testSite = "https://www.edu.goit.global/account/login"; // constnt of page to be tested
+const testSite = "https://www.edu.goit.global/account/login"; // constant of page to be tested
 
 const testEmail1 = "user888@gmail.com";  //test data 1
 const testPass1 = "1234567890"; //test data 1
